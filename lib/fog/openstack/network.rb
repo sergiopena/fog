@@ -41,7 +41,10 @@ module Fog
       model       :fw_rule
       collection  :fw_rules
       model       :fw_policy
+<<<<<<< HEAD
       collection  :fw_policies
+=======
+>>>>>>> dca687414d395f3c82f14c7f1753ac037c09a12b
 
       ## REQUESTS
       #
@@ -143,13 +146,15 @@ module Fog
       request :create_fw
       request :update_fw
       request :create_fw_rule
-      request :create_fw_policy
+      request :get_fw_rule
       request :list_fw_rules
+      request :delete_fw_rule
+
+      request :create_fw_policy
       request :list_fw_policies
       request :get_fw_policy
       request :delete_fw_policy
       request :update_fw_policy
-
 
       class Mock
         def self.data

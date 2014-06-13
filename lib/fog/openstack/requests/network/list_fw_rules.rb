@@ -6,7 +6,7 @@ module Fog
           request(
             :expects => 200,
             :method  => 'GET',
-            :path    => '/fw/firewall_rules',
+            :path    => 'fw/firewall_rules',
             :query   => filters
           )
         end
