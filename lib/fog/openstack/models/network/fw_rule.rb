@@ -27,29 +27,17 @@ module Fog
 
         def create
           requires :protocol, :action
-          merge_attributes(service.create_fw_rule(self.name,
-                                                    self.description,
-                                                    self.source_ip_address,
-                                                    self.source_port,
-                                                    self.destination_ip_address,
-                                                    self.destination_port,
-                                                    self.protocol,
+          merge_attributes(service.create_fw_rule(self.protocol,
                                                     self.action,
-                                                    self.attributes ).body['firewall-rule'])
+                                                    self.attributes).body['firewall_rule'])
           self
         end
 
         def update
           requires :protocol, :action
-          merge_attributes(service.create_fw_rule(self.name,
-                                                    self.description,
-                                                    self.source_ip_address,
-                                                    self.source_port,
-                                                    self.destination_ip_address,
-                                                    self.destination_port,
-                                                    self.protocol,
+          merge_attributes(service.create_fw_rule(self.protocol,
                                                     self.action,
-                                                    self.attributes).body['firewall-rule'])
+                                                    self.attributes).body['firewall_rule'])
           self
         end
 
