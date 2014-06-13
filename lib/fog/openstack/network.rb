@@ -41,10 +41,7 @@ module Fog
       model       :fw_rule
       collection  :fw_rules
       model       :fw_policy
-<<<<<<< HEAD
       collection  :fw_policies
-=======
->>>>>>> dca687414d395f3c82f14c7f1753ac037c09a12b
 
       ## REQUESTS
       #
