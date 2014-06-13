@@ -2,16 +2,15 @@ module Fog
   module Network
     class OpenStack
       class Real
-        def create_fw_policy(name, options = {})
+        def create_fw_policy(name, description, options = {})
           data = {
             'firewall_policy' => {
               'name'          => name,
-              'description'   => options[:description],
-              'firewall_rules'=> options[:firewall_rules]
+              'description'   => options[:description]
             }
           }
 
-          vanilla_options = [ :tenant_id , :name , :description , :firewall_rules ]
+          vanilla_options = [ :audited, :firewall_rules, :shared, :tenant_id  ]
           vanilla_options.reject{ |o| options[o].nil? }.each do |key|
             data['firewall_policy'][key] = options[key]
           end
@@ -26,7 +25,7 @@ module Fog
       end
 
       class Mock
-        def create_fw_policy(name, options = {})
+        def create_fw_policy(name, description, options = {})
           Fog::Mock.not_implemented
         end
       end

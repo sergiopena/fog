@@ -6,9 +6,12 @@ module Fog
       class Fw < Fog::Model
         identity :id
 
-        attribute :name
+        attribute :admin_state_up
         attribute :description
-        attribute :firewall_policy
+        attribute :firewall_policy_id
+        attribute :name
+        attribute :status
+        attribute :tenant_id
 
         def initialize(attributes)
           prepare_service_value(attributes)
@@ -22,26 +25,17 @@ module Fog
 
         def create
           requires :name
-          merge_attributes(service.create_fw_policy(self.name,
-                                                    self.description,
-                                                    self.firewall_policy,
-                                                    self.attributes ).body['firewall'])
+          merge_attributes(service.create_fw(self.name,
+                                             self.attributes ).body['firewall'])
           self
         end
 
         def update
           # THis shit is not done at all
 
-          requires :protocol, :action
-          merge_attributes(service.create_fw_rule(self.name,
-                                                    self.description,
-                                                    self.source_ip_address,
-                                                    self.source_port,
-                                                    self.destination_ip_address,
-                                                    self.destination_port,
-                                                    self.protocol,
-                                                    self.action,
-                                                    self.attributes).body['firewall-rule'])
+          requires :name
+          merge_attributes(service.update_fw(self.id,
+                                                  self.attributes).body['firewall'])
           self
         end
 
