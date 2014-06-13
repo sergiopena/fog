@@ -148,6 +148,7 @@ module Fog
       request :delete_fw_rule
       request :update_fw_rule
       request :add_policy_rule
+      request :disassociate_fw_policy_rule
 
       request :create_fw_policy
       request :list_fw_policies
