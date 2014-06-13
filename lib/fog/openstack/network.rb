@@ -37,8 +37,8 @@ module Fog
       model       :security_group_rule
       collection  :security_group_rules
       model       :fw_rule
+      collection  :fw_rules
       model       :fw_policy
-      # collection  :fw_rules
 
       ## REQUESTS
       #
@@ -136,6 +136,9 @@ module Fog
 
       # Firewall
       request :create_fw_rule
+      request :get_fw_rule
+      request :list_fw_rules
+
       request :create_fw_policy
       request :create_fw
       # request :list_fw_rules

@@ -16,7 +16,7 @@ module Fog
 
         def all(filters = filters)
           self.filters = filters
-          # load(service.list_routers(filters).body['firewall_rule'])
+          load(service.list_fw_rules(filters).body['firewall_rules'])
         end
 
         def get(fw_rule_id)
@@ -30,3 +30,4 @@ module Fog
     end
   end
 end
+
