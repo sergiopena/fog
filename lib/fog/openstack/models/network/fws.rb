@@ -1,13 +1,13 @@
 require 'fog/core/collection'
-require 'fog/openstack/models/network/fw_rule'
+require 'fog/openstack/models/network/fw'
 
 module Fog
   module Network
     class OpenStack
-      class FwRules < Fog::Collection
+      class Fws < Fog::Collection
         attribute :filters
 
-        model Fog::Network::OpenStack::FwRule
+        model Fog::Network::OpenStack::Fw
 
         def initialize(attributes)
           self.filters ||= {}
@@ -16,12 +16,12 @@ module Fog
 
         def all(filters = filters)
           self.filters = filters
-          load(service.list_fw_rules(filters).body['firewall_rule'])
+          load(service.list_firewalls(filters).body['firewalls'])
         end
 
-        def get(fw_rule_id)
-          if fw_rule = service.get_fw_rule(fw_rule_id).body['firewall_rule']
-            new(fw_rule)
+        def get(firewall_id)
+          if firewall = service.get_firewall(firewall_id).body['firewall']
+            new(firewall)
           end
         rescue Fog::Network::OpenStack::NotFound
           nil

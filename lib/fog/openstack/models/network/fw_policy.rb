@@ -6,48 +6,45 @@ module Fog
       class FwPolicy < Fog::Model
         identity :id
 
-        attribute :name
+        attribute :audited
         attribute :description
         attribute :firewall_rules
+        attribute :name
+        attribute :shared
+        attribute :tenant_id
 
         def initialize(attributes)
           prepare_service_value(attributes)
           super
         end
 
+        def fw_rules
+          service.fw_rules.select {|fr| fr.firewall_policy_id == self.id }
+        end
+
         def save
-          requires :protocol, :action
+          requires :name
           identity ? update : create
         end
 
         def create
-          requires :name
+          requires :name, :description
           merge_attributes(service.create_fw_policy(self.name,
                                                     self.description,
-                                                    self.firewall_rules,
-                                                    self.attributes ).body['firewall-policy'])
+                                                    self.attributes ).body['firewall_policy'])          
           self
         end
 
         def update
-          # THis shit is not done at all
-
-          requires :protocol, :action
-          merge_attributes(service.create_fw_rule(self.name,
-                                                    self.description,
-                                                    self.source_ip_address,
-                                                    self.source_port,
-                                                    self.destination_ip_address,
-                                                    self.destination_port,
-                                                    self.protocol,
-                                                    self.action,
-                                                    self.attributes).body['firewall-rule'])
+          requires :name, :description
+          merge_attributes(service.update_fw_policy(self.id,
+                                                    self.attributes ).body['firewall_policy'])          
           self
         end
 
         def destroy
           requires :id
-          service.delete_fw_rule(self.id)
+          service.delete_fw_policy(self.id)
           true
         end
       end
