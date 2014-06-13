@@ -36,6 +36,9 @@ module Fog
       collection  :security_groups
       model       :security_group_rule
       collection  :security_group_rules
+      model       :fw_rule
+      model       :fw_policy
+      # collection  :fw_rules
 
       ## REQUESTS
       #
@@ -130,6 +133,13 @@ module Fog
       request :get_quota
       request :update_quota
       request :delete_quota
+
+      # Firewall
+      request :create_fw_rule
+      request :create_fw_policy
+      request :create_fw
+      # request :list_fw_rules
+
 
       class Mock
         def self.data
