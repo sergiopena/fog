@@ -139,6 +139,7 @@ module Fog
       request :get_fw_rule
       request :list_fw_rules
       request :delete_fw_rule
+      request :update_fw_rule
 
       request :create_fw_policy
       request :create_fw

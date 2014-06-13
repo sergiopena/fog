@@ -35,8 +35,7 @@ module Fog
 
         def update
           requires :protocol, :action
-          merge_attributes(service.create_fw_rule(self.protocol,
-                                                    self.action,
+          merge_attributes(service.update_fw_rule(self.id,
                                                     self.attributes).body['firewall_rule'])
           self
         end
