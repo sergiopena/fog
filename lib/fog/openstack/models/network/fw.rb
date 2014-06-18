@@ -19,7 +19,7 @@ module Fog
         end
 
         def save
-          requires :protocol, :action
+          requires :name
           identity ? update : create
         end
 
@@ -35,7 +35,7 @@ module Fog
 
           requires :name
           merge_attributes(service.update_fw(self.id,
-                                                  self.attributes).body['firewall'])
+                                            self.attributes).body['firewall'])
           self
         end
 
