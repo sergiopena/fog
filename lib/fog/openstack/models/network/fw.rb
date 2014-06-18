@@ -41,7 +41,7 @@ module Fog
 
         def destroy
           requires :id
-          service.delete_fw_rule(self.id)
+          service.delete_fw(self.id)
           true
         end
       end
