@@ -143,19 +143,20 @@ module Fog
       request :create_fw
       request :update_fw
       request :delete_fw
+      
       request :create_fw_rule
       request :get_fw_rule
       request :list_fw_rules
       request :delete_fw_rule
       request :update_fw_rule
-      request :add_policy_rule
-      request :disassociate_fw_policy_rule
-
+      
       request :create_fw_policy
       request :list_fw_policies
       request :get_fw_policy
       request :delete_fw_policy
       request :update_fw_policy
+      request :policy_insert_rule
+      request :policy_remove_rule
 
       class Mock
         def self.data

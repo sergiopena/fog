@@ -42,6 +42,23 @@ module Fog
           self
         end
 
+        def insert_rule
+          requires :firewall_rule_id
+          service.policy_insert_rule(self.id,
+                                     firewall_rule_id,
+                                     {
+                                      'insert_before' => :insert_before,
+                                      'insert_after'  => :insert_after
+                                      })
+          self
+        end
+
+        def remove_rule
+          requires :firewall_rule_id
+          service.policy_remove_rule(self.id, firewall_rule_id)
+          self
+        end
+
         def destroy
           requires :id
           service.delete_fw_policy(self.id)
